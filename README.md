@@ -33,13 +33,13 @@ List all SSM Parameters
 ```
 awsparams list --profile demo
 ```
-![awsparams list](./assets/awsparams-list.png)
+![awsparams list](https://raw.githubusercontent.com/pdomala/awsparams/master/assets/awsparams-list.png)
 
 List all SSM Parameters of specific type
 ```
 awsparams list SecureString --profile demo
 ```
-![awsparams list type](./assets/awsparams-list-type.png)
+![awsparams list type](https://raw.githubusercontent.com/pdomala/awsparams/master/assets/awsparams-list-type.png)
 
 ## Search Parameters
 
@@ -47,7 +47,7 @@ Search SSM Parameters containing 'prod'
 ```
 awsparams search prod --profile demo
 ```
-![awsparams search](./assets/awsparams-search.png)
+![awsparams search](https://raw.githubusercontent.com/pdomala/awsparams/master/assets/awsparams-search.png)
 
 ## Get Parameter/s Values
 
@@ -56,4 +56,4 @@ Get values for SSM Parameter names containing 'dev'
 ```
 awsparams get dev --profile demo
 ```
-![awsparams get](./assets/awsparams-get.png)
+![awsparams get](https://raw.githubusercontent.com/pdomala/awsparams/master/assets/awsparams-get.png)

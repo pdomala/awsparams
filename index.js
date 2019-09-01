@@ -2,10 +2,11 @@
 const yargs = require('yargs');
 const log = require('./_helpers/logger').logger;
 const AWS = require('aws-sdk');
+const { version } = require('./package.json');
 
 // Command line arguments
 const args = yargs
-    .version('0.0.1')
+    .version(version)
     .usage('Usage: aws-params-cli <command> [options]')
     .demandCommand(1, 'You need at least one command before moving on')
     .command(['list'], 'List all SSM Paramaters', {})

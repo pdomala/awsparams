@@ -1,6 +1,6 @@
 {
   "name": "awsparams",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "AWS SSM Parameters CLI",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/pdomala-public/npm/aws-params-cli.git"
+    "url": "https://github.com/pdomala/awsparams.git"
   },
   "keywords": [
     "aws",
