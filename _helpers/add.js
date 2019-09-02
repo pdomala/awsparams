@@ -15,15 +15,15 @@ exports.handler = async (args, AWS) => {
             Type: args.type,
             Value: args.value,
             Description: args.description ? args.description : '',
-            Overwrite: args.f ? true : false
+            Overwrite: false
         };
         const ssm = new AWS.SSM();
 
         const addParamRes = await ssm.putParameter(addParams).promise();
-        spinner.succeed(`Parameter '${args.name}' ${args.f ? 'overwritten' : 'added'} successfully`);
+        spinner.succeed(`Parameter '${args.name}' added successfully`);
     } catch (error) {
         if (error.message.includes('The parameter already exists')) {
-            spinner.fail(`Parameter '${args.name}' already exists. Please use -f if you wish to overwrite existing parameter.`);
+            spinner.fail(`Parameter '${args.name}' already exists. Please use 'awsparams update' if you wish to update existing parameter.`);
         } else {
             spinner.fail(error.message ? error.message : error);
         }

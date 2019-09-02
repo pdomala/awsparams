@@ -57,3 +57,31 @@ Get values for SSM Parameter names containing 'dev'
 awsparams get dev --profile demo
 ```
 ![awsparams get](https://raw.githubusercontent.com/pdomala/awsparams/master/assets/awsparams-get.png)
+
+Get raw values for SSM Parameter names containing 'dev'
+
+```
+awsparams get-raw dev --profile demo
+```
+![awsparams get-raw](https://raw.githubusercontent.com/pdomala/awsparams/master/assets/awsparams-get-raw.png)
+
+## Add Parameter
+
+```
+awsparams add myparamname myparamvalue String "This is my description" --profile demo
+```
+![awsparams add](https://raw.githubusercontent.com/pdomala/awsparams/master/assets/awsparams-add.png)
+
+## Update Parameter
+
+```
+awsparams update myparam mynewvalue --profile demo
+```
+![awsparams update](https://raw.githubusercontent.com/pdomala/awsparams/master/assets/awsparams-update.png)
+
+## Delete Parameter
+
+```
+awsparams delete myparamname --profile demo
+```
+![awsparams delete](https://raw.githubusercontent.com/pdomala/awsparams/master/assets/awsparams-delete.png)

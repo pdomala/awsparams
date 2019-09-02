@@ -61,6 +61,7 @@ _listParams = async (describeParams, AWS) => {
             ssmParamList.forEach(ssmParam => {
                 paramsTable.push([ssmParam.Name, ssmParam.Type, moment(ssmParam.LastModifiedDate).fromNow(), _.last(ssmParam.LastModifiedUser.split('/'))]);
             });
+            console.log('');
             console.log(paramsTable.toString());
             spinner.succeed(`Found ${ssmParamList.length} SSM Parameters`);
         }

@@ -23,11 +23,16 @@ const args = yargs
     .example('$0 get-value <searchString>')
 
     .command('add <name> <value> <type> [description]', 'Add SSM Parameter')
-    .example('$0 add <myparameter> <myvalue> <String/SecureString/StringList>')
+    .example('$0 add <myparameter> <myvalue> <String/SecureString/StringList> ["This is my description"]')
+
+    .command('update <name> <value> [type] [description]', 'Update existing SSM Parameter')
+    .example('$0 update <myparameter> <myvalue> [String/SecureString/StringList] ["This is my description"]')
+
+    .command('delete <names>', 'Delete existing SSM Parameter/s. Use comma separated string to delete multiple values')
+    .example('$0 delete <myparameter>')
 
     .option('p', { alias: 'profile', describe: 'AWS profile name' })
     .option('r', { alias: 'region', describe: 'AWS region' })
-    .option('f', { alias: 'force', describe: 'Overwrite existing parameters with same name' })
     .help('h')
     .alias('h', 'help').argv;
 
@@ -66,6 +71,14 @@ try {
             case 'add':
                 const add = require('./_helpers/add');
                 add.handler(args, AWS);
+                break;
+            case 'update':
+                const update = require('./_helpers/update');
+                update.handler(args, AWS);
+                break;
+            case 'delete':
+                const del = require('./_helpers/delete');
+                del.handler(args, AWS);
                 break;
             default:
                 log.error(`Command - ${command} not defined.`);
