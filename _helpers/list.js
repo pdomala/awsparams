@@ -8,15 +8,17 @@ const paramsTable = require('./table').paramsTable(['Name', 'Type', 'Modified', 
 
 exports.handler = async (args, AWS) => {
     try {
-        if (args._[1]) {
-            // Throw if Type is invalid
-            if (!_.includes(validTypes, args._[1])) throw new Error('Invalid SSM Parameter Type');
+        if (args.type && !_.includes(validTypes, args.type)) {
+            throw new Error(`You provided an invalid parameter type. It should be one of these - ${validTypes}`);
+        }
+
+        if (args.type) {
             await _listParams(
                 {
                     Filters: [
                         {
                             Key: 'Type',
-                            Values: [args._[1]]
+                            Values: [args.type]
                         }
                     ],
                     MaxResults: maxresults
@@ -27,7 +29,7 @@ exports.handler = async (args, AWS) => {
             await _listParams({ MaxResults: maxresults }, AWS);
         }
     } catch (error) {
-        spinner.fail(error);
+        spinner.fail(error.message ? error.message : error);
     }
 };
 
@@ -59,8 +61,8 @@ _listParams = async (describeParams, AWS) => {
             ssmParamList.forEach(ssmParam => {
                 paramsTable.push([ssmParam.Name, ssmParam.Type, moment(ssmParam.LastModifiedDate).fromNow(), _.last(ssmParam.LastModifiedUser.split('/'))]);
             });
-            spinner.succeed(`Found ${ssmParamList.length} SSM Parameters`);
             console.log(paramsTable.toString());
+            spinner.succeed(`Found ${ssmParamList.length} SSM Parameters`);
         }
     } catch (error) {
         spinner.fail(error.message);

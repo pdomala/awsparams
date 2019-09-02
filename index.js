@@ -9,15 +9,25 @@ const args = yargs
     .version(version)
     .usage('Usage: aws-params-cli <command> [options]')
     .demandCommand(1, 'You need at least one command before moving on')
-    .command(['list'], 'List all SSM Paramaters', {})
+
+    .command('list [type]', 'List all SSM Paramaters', {})
     .example('$0 list <String | SecureString | StringList>')
-    .command(['search'], 'Search SSM Parameters', {})
-    .example('$0 search <search-string>')
-    .command(['get'], 'Get values of  SSM Parameters', {})
-    .example('$0 get <search-string>')
-    .example('$0 get value <search-string>')
+
+    .command('search <searchString>', 'Search SSM Parameters without values', {})
+    .example('$0 search <searchString>')
+
+    .command('get <searchString>', 'Get values of SSM Parameters matching search string', {})
+    .example('$0 get <searchString>')
+
+    .command('get-raw <searchString>', 'Get raw values of  SSM Parameters matching search string', {})
+    .example('$0 get-value <searchString>')
+
+    .command('add <name> <value> <type> [description]', 'Add SSM Parameter')
+    .example('$0 add <myparameter> <myvalue> <String/SecureString/StringList>')
+
     .option('p', { alias: 'profile', describe: 'AWS profile name' })
     .option('r', { alias: 'region', describe: 'AWS region' })
+    .option('f', { alias: 'force', describe: 'Overwrite existing parameters with same name' })
     .help('h')
     .alias('h', 'help').argv;
 
@@ -48,6 +58,14 @@ try {
             case 'get':
                 const get = require('./_helpers/get');
                 get.handler(args, AWS);
+                break;
+            case 'get-raw':
+                const getraw = require('./_helpers/get-raw');
+                getraw.handler(args, AWS);
+                break;
+            case 'add':
+                const add = require('./_helpers/add');
+                add.handler(args, AWS);
                 break;
             default:
                 log.error(`Command - ${command} not defined.`);

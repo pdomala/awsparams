@@ -50,7 +50,7 @@ exports.handler = args => {
                 throw new Error(`AWS profile ${process.env.AWS_PROFILE} not found`);
             }
 
-            creds = profiles[args.p];
+            creds = profiles[process.env.AWS_PROFILE];
             
             if (args.r) {
                 creds.region = args.r
@@ -64,7 +64,7 @@ exports.handler = args => {
                 creds.region = process.env.AWS_DEFAULT_REGION ? process.env.AWS_DEFAULT_REGION : defaultRegion;
             }
 
-            spinner.succeed(`Using credentials from profile '${args.p}' and region '${creds.region}'`);
+            spinner.succeed(`Using credentials from profile '${process.env.AWS_PROFILE}' and region '${creds.region}'`);
             return creds;
         } else if (process.env.AWS_ACCESS_KEY_ID && process.env.AWS_SECRET_ACCESS_KEY) {
             const creds = {

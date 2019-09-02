@@ -37,17 +37,8 @@ _getParams = async (describeParams, args, AWS) => {
     } while (nextToken);
 
     ssmParamNames = ssmParamNames.filter(x => _.includes(x, args.searchString));
-    // if (args._[1] === 'value') {
-    //     if (args._[2]) {
-    //         ssmParamNames = ssmParamNames.filter(x => _.includes(x, args._[2]));
-    //     } else {
-    //         throw `No parameters found matching "${args._[2]}"`;
-    //     }
-    // } else {
-    //     ssmParamNames = ssmParamNames.filter(x => _.includes(x, args._[1]));
-    // }
 
-    // Print Table
+    // Print Raw
     if (ssmParamNames.length === 0) {
         spinner.fail(`No parameters found matching "${args.searchString}"`);
     } else if (ssmParamNames.length > 10) {
@@ -60,29 +51,11 @@ _getParams = async (describeParams, args, AWS) => {
         const getRes = await ssm.getParameters(getParams).promise();
         
         getRes.Parameters.forEach(x => {
-          paramsTable.push([x.Name, x.Type, x.Value]);
+            console.log('');
+            console.log(x.Name);
+            console.log(x.Value);
+            console.log('');
         });
-        console.log('');
-        console.log(paramsTable.toString());
         spinner.succeed(`Found ${getRes.Parameters.length} parameters matching "${args.searchString}"`);
-
-        // if (args._[1] === 'value') {
-        //     if (args._[2]) {
-        //         getRes.Parameters.forEach(x => {
-        //             console.log('');
-        //             console.log(x.Name);
-        //             console.log(x.Value);
-        //             console.log('');
-        //         });
-        //     } else {
-        //         throw `No parameters found matching "${args._[2]}"`;
-        //     }
-        // } else {
-        //     getRes.Parameters.forEach(x => {
-        //         paramsTable.push([x.Name, x.Type, x.Value]);
-        //     });
-        //     console.log('');
-        //     console.log(paramsTable.toString());
-        // }
     }
 };
