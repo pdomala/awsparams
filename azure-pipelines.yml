@@ -16,6 +16,11 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
+    npm install -g npm-cli-login
+    npm-cli-login
+  displayName: 'NPM CLI Login'
+
+- script: |
     npm install
-    npm run build
-  displayName: 'npm install and build'
+    npm publish
+  displayName: 'NPM Install & Publish'
