@@ -21,6 +21,7 @@ steps:
   displayName: 'NPM CLI Login'
 
 - script: |
+    npm version patch
     npm install
     npm publish
   displayName: 'NPM Install & Publish'

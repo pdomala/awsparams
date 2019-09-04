@@ -5,7 +5,20 @@
 Wildcard searching of SSM Paramaters on AWS console is not a good experience especially if you have hundreds of path based SSM paramaters.
 This CLI tool helps you to search and view SSM Paramaters.
 
-Note: Adding and updating parameters will be added soon.
+## Features
+
+- List all parameters
+- List parameters based on type
+- Search paramerters
+- Get parameter values
+- Get raw parameter values (No table)
+- Add / Update / Delete parameters
+
+## Features in pipeline
+
+- Regex search
+- More output formats (csv, json)
+- Bulk add parameters from csv / json
 
 ## Installation
 
