@@ -1,5 +1,7 @@
 # AWSPARAMS
 
+[![Build Status](https://dev.azure.com/prasaddomala/awsparams-npm/_apis/build/status/pdomala.awsparams?branchName=master)](https://dev.azure.com/prasaddomala/awsparams-npm/_build/latest?definitionId=1&branchName=master)
+
 Wildcard searching of SSM Paramaters on AWS console is not a good experience especially if you have hundreds of path based SSM paramaters.
 This CLI tool helps you to search and view SSM Paramaters.
 
