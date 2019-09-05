@@ -1,6 +1,6 @@
 {
   "name": "awsparams",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "AWS SSM Parameters CLI",
   "main": "index.js",
   "scripts": {
