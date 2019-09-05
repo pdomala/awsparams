@@ -25,9 +25,7 @@ steps:
     git config --global user.email "prasad.domala@gmail.com"
     git config --global user.name "Prasad Domala"
     npm version patch
-    git add --all
-    git commit -m 'NPM Version Bump'
-    git push
+    git push origin master
     npm install
     npm publish
   displayName: 'NPM Install & Publish'
