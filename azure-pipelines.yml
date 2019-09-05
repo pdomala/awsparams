@@ -21,8 +21,6 @@ steps:
   displayName: 'NPM CLI Login'
 
 - script: |
-    git config --global user.email "prasad.domala@gmail.com"
-    git config --global user.name "Prasad Domala"
     npm version patch
     npm install
     npm publish
