@@ -20,13 +20,14 @@ steps:
     npm install -g npm-cli-login
     npm-cli-login -u $(NPM_USER) -p $(NPM_PASS) -e $(NPM_EMAIL)
   displayName: 'NPM CLI Login'
-- task: Npm@1
-  inputs:
-    command: 'publish'
-# - script: |
-#     git config --global user.email "prasad.domala@gmail.com"
-#     git config --global user.name "Prasad Domala"
-#     npm version patch
-#     npm install
-#     npm publish
-#   displayName: 'NPM Install & Publish'
+
+- script: |
+    git config --global user.email "prasad.domala@gmail.com"
+    git config --global user.name "Prasad Domala"
+    npm version patch
+    git add --all
+    git commit -m 'NPM Version Bump'
+    git push
+    npm install
+    npm publish
+  displayName: 'NPM Install & Publish'
