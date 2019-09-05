@@ -27,5 +27,5 @@ steps:
     npm version patch
     git push origin master
     npm install
-    npm publish
+    # npm publish
   displayName: 'NPM Install & Publish'
