@@ -22,10 +22,6 @@ steps:
   displayName: 'NPM CLI Login'
 
 - script: |
-    git config --global user.email "prasad.domala@gmail.com"
-    git config --global user.name "Prasad Domala"
-    npm version patch
-    git push -u origin master
     npm install
-    # npm publish
+    npm publish
   displayName: 'NPM Install & Publish'

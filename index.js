@@ -7,7 +7,7 @@ const { version } = require('./package.json');
 // Command line arguments
 const args = yargs
     .version(version)
-    .usage('Usage: aws-params-cli <command> [options]')
+    .usage('Usage: $0 <command> [options]')
     .demandCommand(1, 'You need at least one command before moving on')
 
     .command('list [type]', 'List all SSM Paramaters', {})
